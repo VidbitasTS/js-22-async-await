@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 06</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- <script src="./js/main.js" defer></script> -->
+    <!-- <script src="./js/product.js" defer></script> -->
+    <script src="./js/shop.js" defer></script>
+    <!-- <script src="./js/number.js" defer></script> -->
+</head>
+
+<body>
+    <!-- <div class="container">
+        <h1>New project</h1>
+        <div class="shop-items card"></div>
+    </div> -->
+
+    <!-- <div class="container">
+        <h1>Our shop</h1>
+
+        <div class="filters">
+            <button id="sort-price">Sort by price</button>
+        </div>
+        <div id="shop-items" class="shop-items">
+            <div class="shop-item card">
+                <img src="" alt="preke">
+                <h3>title</h3>
+                <p class="price">100</p>
+                <p>Category: kazkas</p>
+                <div class="control">
+                    <button>buy now</button>
+                    <button>More info</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container">
+        <h1>Our shop</h1>
+
+        <div class="filters">
+
+            <fieldset class="flex">
+                <button id="sort-price">Sort by price</button>
+                <legend>Kategorijos</legend>
+                <div>
+                    <label for="all">All</label>
+                    <input type="radio" name="category" value="all" id="all">
+                </div>
+                <div>
+                    <label for="electronics">Electronics</label>
+                    <input type="radio" name="category" value="electronics" id="electronics">
+                </div>
+                <div>
+                    <label for="jewelery">Jewelery</label>
+                    <input type="radio" name="category" value="jewelery" id="jewelery">
+                </div>
+                <div>
+                    <select id="select-sort"></select>
+                </div>
+                <!-- <button id="sort-price-asc">Sort by price ASC</button> -->
+            </fieldset>
+            <fieldset class="flex">
+                <legend>Search</legend>
+                <input type="search" id="search" placeholder="search">
+                <label><input type="checkbox" id="search-сheck" noChecked>Interaktyvus</label>
+                <button id="search-btn">Search</button>
+            </fieldset>
+        </div>
+        <div id="shop-items" class="shop-items">
+            <div class="shop-item card">
+                <img src="" alt="preke">
+                <h3>title</h3>
+                <p class="price">100</p>
+                <p>Category: kazkas</p>
+                <div class="control">
+                    <button>buy now</button>
+                    <button>More info</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

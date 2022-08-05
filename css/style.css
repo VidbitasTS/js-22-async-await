@@ -1,0 +1,57 @@
+@import 'reset.css';
+.shop-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+
+/* .shop-items {
+    display: flex;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    gap: 1rem;
+} */
+
+.flex1 {
+    display: flex;
+    /* grid-row: auto; */
+    /* gap: 20px; */
+    /* flex-wrap: wrap; */
+    /* flex-direction: row; */
+}
+
+
+/* .card div img {
+    width: auto;
+    height: fit-content;
+} */
+
+.item {
+    flex-grow: 3;
+    /* text-align: center; */
+    /* margin: 20px; */
+    display: inline;
+}
+
+
+/* .next {
+    display: block;
+    text-align: right;
+    color: blue;
+    margin-top: 20px;
+} */
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer a {
+    color: blue;
+}
+
+
+/* .imgClass {
+    width: 30%;
+    height: 30%;
+} */
