@@ -2,11 +2,10 @@
 console.log('shop.js');
 
 let url = 'https://fakestoreapi.com/products';
-export const urlFooter = 'data/footer.html';
 //url = 'data/prod.json';
 
 // taikomes
-const formEl = document.querySelector('#formId');
+const formEl = document.forms[0];
 //console.log('formEl ===', formEl, formEl.elements.title.value);
 const shopItemsEl = document.getElementById('shop-items');
 const searchElBtn = document.getElementById('search-btn');
@@ -17,7 +16,6 @@ const selectSort = document.getElementById('select-sort');
 const selectFilter = document.getElementById('select-filter');
 const formdBtnEl = document.getElementById('btn-form');
 const legendFormEl = document.getElementById('legend-form');
-let krepselis = [];
 
 // main Shop state
 let mainShopItemsArr = [];
@@ -34,10 +32,7 @@ getProducts(url).then((items) => makeShopItemsList(items));
 window.addEventListener('click', (e) => {
     console.log(e, e.target.value, e.target.id, e.target.tagName);
     let updateBtnId = '0';
-    if (
-        e.target.id.substr(0, 10) == 'btn-update' ||
-        e.target.id.substr(0, 7) == 'buy-btn'
-    ) {
+    if (e.target.id.substr(0, 10) == 'btn-update') {
         updateBtnId = document.querySelector(`#${e.target.id}`).value;
         console.log(e, e.target.value, e.target.id, e.target.tagName, updateBtnId);
     }
@@ -58,19 +53,8 @@ window.addEventListener('click', (e) => {
 
             formUpdateValue(updateBtnId);
             break;
-        case 'buy-btn' + updateBtnId:
-            // const krep = document.querySelector('#krepselis');
-            // krep.append(divEl);
-            alert('xxx');
-            document.querySelector('#krepselis').style.display = 'block';
-            //getSingleProduct(updateBtnId);
-            //console.log('xx====', xx);
-            break;
         case 'close':
             document.querySelector('.modal').style.display = 'none';
-            break;
-        case 'close1':
-            document.querySelector('.modal1').style.display = 'none';
             break;
         case 'btn-form':
             e.preventDefault();
@@ -84,72 +68,61 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// function makeOneCardKrep(shopObj) {
-//     const krep = document.querySelector('.modal-content1');
-//     console.log('shopObj krep ===', shopObj.PromiseResult);
-//     const divEl = document.createElement('div');
-//     divEl.className = 'shop-item card';
-//     divEl.innerHTML = `
-//       <img src="${shopObj.image}" alt="preke">
-//       <h3>${shopObj.title}</h3>
-//       <p class="price">€${shopObj.price}</p>
-//       <p>Category: ${shopObj.category}</p>
-//       `;
-//     krep.append(divEl);
-// }
-
-// getSingleProduct(`${url}/${currentProductId}`).then((currentItemObj) => {
-//     contEl.append(makeOneCardKrep(currentItemObj));
-// });
-
-// async function getSingleProduct(id) {
-//     const resp = await fetch(`${url}/${id}`);
-//     const singleProduct = await resp.json(); {
-//         console.log('singleProduct krepselis ===', singleProduct);
-//         return singleProduct;
-//     }
-// }
-
 function formCreateValue() {
-    const { title, price, description, category, image } = formEl.elements;
-    title.value = '';
-    price.value = 0;
-    description.value = '';
-    category.value = '';
-    image.value = '';
+    // const title = document.querySelector('#title-form').value;
+    // const price = Number(document.querySelector('#price-form').value).toFixed(2);
+    // const descr = document.querySelector('#descr-form').value;
+    // const categ = document.querySelector('#categ-form').value;
+    // const image = document.querySelector('#image-form').value;
+    // const newProdValue = {
+    //     title: title,
+    //     //       price: price,
+    //     descr: descr,
+    //     categ: categ,
+    //     image: image,
+    //     rating: {
+    //         rate: 0,
+    //         count: 0,
+    //     },
+    // };
+
+    formEl.elements.title.value = '';
+    formEl.elements.price.value = 0;
+    formEl.elements.description.value = '';
+    formEl.elements.category.value = '';
+    formEl.elements.image.value = '';
+
+    // const newProdValue = {
+    //     title: formEl.elements.title.value,
+    //     price: parseInt(formEl.elements.price.value).toFixed(2),
+    //     description: formEl.elements.description.value,
+    //     category: formEl.elements.category.value,
+    //     image: formEl.elements.image.value,
+    // };
+
+    // console.log(newProdValue);
+    // return newProdValue;
 }
 
-async function formUpdateValue(id1) {
-    const resp = await fetch(`${url}/${id1}`);
+async function formUpdateValue(id) {
+    const resp = await fetch(`${url}/${id}`);
     const singleProduct = await resp.json();
 
-    console.log('singleProduct==== formupdate', singleProduct, formEl.elements);
-
-    const { id, title, price, description, category, image } = formEl.elements;
-
-    id.value = singleProduct.id;
-    title.value = singleProduct.title;
-    price.value = singleProduct.price;
-    description.value = singleProduct.description;
-    category.value = singleProduct.category;
-    image.value = singleProduct.image;
-
-    // formEl.elements.id.value = singleProduct.id;
-    // formEl.elements.title.value = singleProduct.title;
-    // formEl.elements.price.value = singleProduct.price;
-    // formEl.elements.description.value = singleProduct.description;
-    // formEl.elements.category.value = singleProduct.category;
-    // formEl.elements.image.value = singleProduct.image;
+    formEl.elements.id.value = singleProduct.id;
+    formEl.elements.title.value = singleProduct.title;
+    formEl.elements.price.value = singleProduct.price;
+    formEl.elements.description.value = singleProduct.description;
+    formEl.elements.category.value = singleProduct.category;
+    formEl.elements.image.value = singleProduct.image;
 }
 
 async function createNewCard() {
-    const { title, price, description, category, image } = formEl.elements;
     const createValue = {
-        title: title.value,
-        price: price.value,
-        description: description.value,
-        category: category.value,
-        image: image.value,
+        title: formEl.elements.title.value,
+        price: parseInt(formEl.elements.price.value).toFixed(2),
+        description: formEl.elements.description.value,
+        category: formEl.elements.category.value,
+        image: formEl.elements.image.value,
     };
     console.log(JSON.stringify(createValue));
     const resp = await fetch('https://fakestoreapi.com/products', {
@@ -163,6 +136,7 @@ async function createNewCard() {
     if (resp.ok) {
         const dataInJs = await resp.json();
         console.log('create dataInJs ===', dataInJs);
+        //alert('create success');
         const succ = document.querySelector('#success');
         succ.style.display = 'inline';
         succ.textContent = 'create success';
@@ -185,7 +159,7 @@ async function updateCard(id) {
         image: formEl.elements.image.value,
     };
 
-    // console.log('JSON.stringify(param)', updateValue);
+    console.log('JSON.stringify(param)', updateValue);
     const resp = await fetch(`https://fakestoreapi.com/products/${id}`, {
         method: 'PUT',
         headers: {
@@ -197,6 +171,7 @@ async function updateCard(id) {
     if (resp.ok) {
         const dataInJs = await resp.json();
         console.log('update dataInJs ===', dataInJs);
+        // alert('update success');
         const succ = document.querySelector('#success');
         succ.style.display = 'inline';
         succ.textContent = 'update success';
@@ -253,6 +228,10 @@ selectFilter.addEventListener('click', (e) => {
         e.target[e.target.value].tagName,
         e.target[e.target.value].value
     );
+    //    console.log('selectFilter====== ', e.target[e.target.value].textContent);
+    // if (sortMainShopItemsArr.length === 0) {
+    //     sortMainShopItemsArr = mainShopItemsArr;
+    // }
 
     if (
         sortFilter.length === 0 ||
@@ -267,24 +246,33 @@ selectFilter.addEventListener('click', (e) => {
             (el) => el.category === e.target[e.target.value].textContent.trim()
         );
     }
+    //sortMainShopItemsArr = sortFilter;
     makeShopItemsList(sortFilter);
 });
 
 // funkcijos
 function inputSearch() {
+    //   console.log(sortMainShopItemsAr);
+    // if (sortMainShopItemsArr.length !== 0) {
+    //     mainShopItemsArr = sortMainShopItemsArr;
+    // }
+    //mainShopItemsArr = sortMainShopItemsAr;
     const searchElVal = searchEl.value.trim();
     console.log(searchElVal);
     const search = mainShopItemsArr.filter((shObj) =>
         shObj.title.toLowerCase().includes(searchElVal.toLowerCase())
     );
     sortMainShopItemsArr = search;
+    //   console.log(search);
     makeShopItemsList(sortMainShopItemsArr);
 }
 
 async function getProducts(argUrl) {
     const resp = await fetch(argUrl);
     const dataInJS = await resp.json();
+    //   console.log('dataInJS ===', dataInJS);
     mainShopItemsArr = dataInJS;
+    //   sortMainShopItemsArr = dataInJS;
     return dataInJS;
 }
 
@@ -296,38 +284,18 @@ function makeShopItemsList(shopItemsArr) {
         shopItemsEl.append(oneItemHtmlEl);
     });
 
-    // for (var i = 0, l = mainShopItemsArr.length; i < l; i++) {
-    //     if (
-    //         selectFilterItem.indexOf(mainShopItemsArr[i].category) === -1 &&
-    //         mainShopItemsArr[i] !== ''
-    //     ) {
-    //         selectFilterItem.push(mainShopItemsArr[i].category);
-    //         const liEl = document.createElement('option');
-    //         liEl.textContent = mainShopItemsArr[i].category;
-    //         liEl.value = selecFiltertCount;
-    //         selecFiltertCount++;
-    //         selectFilter.append(liEl);
-    //     }
-    // }
-    const kategory = fetchCategory();
-    console.log('kategory', kategory);
-}
-
-async function fetchCategory() {
-    const res = await fetch('https://fakestoreapi.com/products/categories');
-    const json = await res.json();
-    console.log('json xxxxxxxxxxxx ===', json);
-    createOption(json);
-    return json;
-}
-
-function createOption(arr) {
-    //    console.log('createOption arr ====', arr);
-    const seletEl = document.querySelector('#category');
-    for (var i = 0, l = arr.length; i < l; i++) {
-        const optEl = document.createElement('option');
-        optEl.textContent = arr[i];
-        seletEl.append(optEl);
+    for (var i = 0, l = mainShopItemsArr.length; i < l; i++) {
+        if (
+            selectFilterItem.indexOf(mainShopItemsArr[i].category) === -1 &&
+            mainShopItemsArr[i] !== ''
+        ) {
+            selectFilterItem.push(mainShopItemsArr[i].category);
+            const liEl = document.createElement('option');
+            liEl.textContent = mainShopItemsArr[i].category;
+            liEl.value = selecFiltertCount;
+            selecFiltertCount++;
+            selectFilter.append(liEl);
+        }
     }
 }
 
@@ -342,27 +310,10 @@ function makeOneCard(shopObj) {
   <p class="price">€${shopObj.price.toFixed(2)}</p>
   <p>Category: ${shopObj.category}</p>
   <div class="control">
-    <button id="buy-btn${shopObj.id}" value="${shopObj.id}"><i id="buy-btn${
-    shopObj.id
-  }" value="${
-    shopObj.id
-  }" class="fa fa-shopping-cart" aria-hidden="true" value="${
-    shopObj.id
-  }" ></i></button>
-    <a href="single-preke.html?id=${
-      shopObj.id
-    }"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-    <button id="btn-update${shopObj.id}" value="${
-    shopObj.id
-  }"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    <button class="buy-btn">Buy</button>
+    <a href="single-preke.html?id=${shopObj.id}">More info</a>
+    <button id="btn-update${shopObj.id}" value="${shopObj.id}">Update</button>
   </div>
-    `;
+  `;
     return divEl;
 }
-
-fetch(urlFooter)
-    .then((resp) => resp.text())
-    .then((data) => {
-        document.querySelector('.container').insertAdjacentHTML('beforeend', data);
-    })
-    .catch((err) => console.log('err ===', err));

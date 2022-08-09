@@ -5,84 +5,99 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
     <title>JS 06</title>
     <link rel="stylesheet" href="./css/style.css" />
     <!-- <script src="./js/main.js" defer></script> -->
     <!-- <script src="./js/product.js" defer></script> -->
-    <script src="./js/shop.js" defer></script>
-    <!-- <script src="./js/number.js" defer></script> -->
+    <!-- <script type="module" src="./js/shop.js" defer></script> -->
+    <script type="module" src="./js/zodis.js" defer></script>
 </head>
 
 <body>
-    <!-- <div class="container">
-        <h1>New project</h1>
-        <div class="shop-items card"></div>
-    </div> -->
-
-    <!-- <div class="container">
-        <h1>Our shop</h1>
-
-        <div class="filters">
-            <button id="sort-price">Sort by price</button>
-        </div>
-        <div id="shop-items" class="shop-items">
-            <div class="shop-item card">
-                <img src="" alt="preke">
-                <h3>title</h3>
-                <p class="price">100</p>
-                <p>Category: kazkas</p>
-                <div class="control">
-                    <button>buy now</button>
-                    <button>More info</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="container">
         <h1>Our shop</h1>
+        <!-- Button New / Update Card -->
+        <!-- <div id="krepselis" class="hide1">
+            <span id="close">&times;</span>
+            <p>tekstas</p>
+        </div> -->
 
+        <div id="krepselis" class="modal1">
+            <div class="modal-content1">
+                <span id="close1">&times;</span>
+            </div>
+        </div>
+
+        <div id="new">
+            <fieldset style="display: inline;">
+                <button id="new-card">New Card</button>
+                <!-- <button id="update-card">Update Card</button> -->
+            </fieldset>
+            <p id="success"></p>
+        </div>
+        <!-- Modal window -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span id="close">&times;</span>
+                <form action="" id="formId">
+                    <fieldset>
+                        <div id="prod-id">
+                            <label for="id">id</label>
+                            <input type="text" id="id" class="id" disabled>
+                        </div>
+                        <legend id="legend-form">New card</legend>
+                        <label for="title">Title</label>
+                        <input type="text" id="title">
+                        <label for="">Price</label>
+                        <input type="number" id="price">
+                        <label for="">Description</label>
+                        <textarea name="" id="description" cols="30" rows="5"></textarea>
+                        <label for="">Category</label>
+                        <!-- <input type="text" id="category"> -->
+                        <select name="category" id="category">
+                            <option value="" selected disabled>Pasirinkite kategorija</option>
+                        </select>
+                        <label for="">Image</label>
+                        <input type="text" id="image">
+                    </fieldset>
+                    <div id="btn-form-div">
+                        <button id="btn-form"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Filtered / Sorted -->
         <div class="filters">
-
             <fieldset class="flex">
-                <button id="sort-price">Sort by price</button>
-                <legend>Kategorijos</legend>
+                <legend>Sorted / Filtered</legend>
                 <div>
-                    <label for="all">All</label>
-                    <input type="radio" name="category" value="all" id="all">
+                    <select id="select-sort">
+                        <option value="0"></option>
+                        <option value="1">Nerusiuota</option>
+                        <option value="2">Price A-Z</option>
+                        <option value="3">Price Z-A</option>
+                    </select>
                 </div>
                 <div>
-                    <label for="electronics">Electronics</label>
-                    <input type="radio" name="category" value="electronics" id="electronics">
+                    <select id="select-filter">
+                        <option value="0"></option>
+                        <option value="1">Nefiltruota</option>
+                    </select>
                 </div>
-                <div>
-                    <label for="jewelery">Jewelery</label>
-                    <input type="radio" name="category" value="jewelery" id="jewelery">
-                </div>
-                <div>
-                    <select id="select-sort"></select>
-                </div>
-                <!-- <button id="sort-price-asc">Sort by price ASC</button> -->
             </fieldset>
             <fieldset class="flex">
                 <legend>Search</legend>
                 <input type="search" id="search" placeholder="search">
-                <label><input type="checkbox" id="search-сheck" noChecked>Interaktyvus</label>
+                <label><input type="checkbox" id="search-сheck" noChecked>Interactive</label>
                 <button id="search-btn">Search</button>
             </fieldset>
         </div>
-        <div id="shop-items" class="shop-items">
-            <div class="shop-item card">
-                <img src="" alt="preke">
-                <h3>title</h3>
-                <p class="price">100</p>
-                <p>Category: kazkas</p>
-                <div class="control">
-                    <button>buy now</button>
-                    <button>More info</button>
-                </div>
-            </div>
-        </div>
+        <!-- Cards item -->
+        <div id="shop-items" class="shop-items"></div>
     </div>
 
 

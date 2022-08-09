@@ -10,24 +10,23 @@ const url = 'https://jsonplaceholder.typicode.com/users';
 //         console.log('data ===', data.data);
 //     })
 //     .catch((err) => console.log('err ===', err));
-//let str1 = [];
+let str = [];
 async function getUser() {
     try {
         const resp = await fetch(url);
-        //if (!resp.ok)
+        if (!resp.ok) throw new Error('Baddddd');
         const dataJs = await resp.json();
         //console.log('dataJs ===', dataJs);
-        //dataJs.forEach(list);
-        const str1 = dataJs.map((val) => val.name);
+        dataJs.forEach(list);
     } catch (error) {
         console.log('error === klaida ================ ' + error);
     }
-    console.log('vardu masyvas', str1);
+    console.log('vardu masyvas', str);
 }
 
-//function list(el) {
-//    return str.push(el.name);
-//   str.push(el.name);
-//    console.log(el.name);
-//}
-//getUser();
+function list(el) {
+    return push(el.name);
+    //   str.push(el.name);
+    //    console.log(el.name);
+}
+getUser();
